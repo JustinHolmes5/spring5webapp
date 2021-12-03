@@ -44,18 +44,27 @@ public class BootStrapData implements CommandLineRunner {
         shanice.getBooks().add(kylieLips);
         kylieLips.getAuthors().add(shanice);
 
+        kylieLips.setPublisher(publisher);
+        publisher.getBooks().add(kylieLips);
+
         authorRepository.save(shanice);
         bookRepository.save(kylieLips);
+        publisherRepository.save(publisher);
 
         Author simon = new Author("Simon", "Sinek");
         Book startWithWhy = new Book("Start with why ", "753159");
         simon.getBooks().add(startWithWhy);
         startWithWhy.getAuthors().add(simon);
 
+        startWithWhy.setPublisher(publisher);
+        publisher.getBooks().add(startWithWhy);
+
         authorRepository.save(simon);
         bookRepository.save(startWithWhy);
+        publisherRepository.save(publisher);
 
         System.out.println("Number of Books: " + bookRepository.count());
+        System.out.println("Publisher number of Books: " + publisher.getBooks().size());
 
     }
 }
